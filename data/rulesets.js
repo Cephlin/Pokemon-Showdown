@@ -703,10 +703,10 @@ exports.BattleFormats = {
 			this.add('rule', '1000 PBV Clause: Limit total PBV of all Pokémon to 1000');
 		},
 		validateTeam: function (team, format) {
-			var speciesTable = {};
 			var totalPBV = 0;
 			for (var i = 0; i < team.length; i++) {
-				totalPBV += team[i].pokebattlevalue;
+            var template = this.getTemplate(team[i].species);
+				totalPBV += template.pokebattlevalue;
 			}
 			if(totalPBV > 1000) {
 				return ["You are limited to a total of 1000 PBV for all Pokémon.", "(You have total PBV of " + totalPBV + ")"];
@@ -720,10 +720,10 @@ exports.BattleFormats = {
 			this.add('rule', '750 PBV Clause: Limit total PBV of all Pokémon to 750');
 		},
 		validateTeam: function (team, format) {
-			var speciesTable = {};
 			var totalPBV = 0;
 			for (var i = 0; i < team.length; i++) {
-				totalPBV += team[i].pokebattlevalue;
+            var template = this.getTemplate(team[i].species);
+				totalPBV += template.pokebattlevalue;
 			}
 			if(totalPBV > 750) {
 				return ["You are limited to a total of 750 PBV for all Pokémon.", "(You have total PBV of " + totalPBV + ")"];
@@ -739,7 +739,8 @@ exports.BattleFormats = {
 		validateTeam: function (team, format) {
 			var totalPBV = 0;
 			for (var i = 0; i < team.length; i++) {
-				totalPBV += team[i].pokebattlevalue;
+            var template = this.getTemplate(team[i].species);
+				totalPBV += template.pokebattlevalue;
 			}
 			if(totalPBV > 500) {
 				return ["You are limited to a total of 500 PBV for all Pokémon.", "(You have total PBV of " + totalPBV + ")"];
