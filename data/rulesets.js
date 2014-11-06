@@ -61,6 +61,21 @@ exports.BattleFormats = {
 		ruleset: ['Species Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Abilities Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod'],
 		banlist: ['Unreleased', 'Illegal', 'Huntail + Shell Smash + Sucker Punch', 'Leavanny + Knock Off + Sticky Web', 'Sylveon + Hyper Voice + Heal Bell + Wish + Baton Pass']
 	},
+	standard1000: {
+		effectType: 'Banlist',
+		ruleset: ['Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', "1000 PBV Clause"],
+		banlist: ['Unreleased', 'Illegal', 'Huntail + Shell Smash + Sucker Punch', 'Leavanny + Knock Off + Sticky Web', 'Sylveon + Hyper Voice + Heal Bell + Wish + Baton Pass']
+	},
+	standard750: {
+		effectType: 'Banlist',
+		ruleset: ['Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', "750 PBV Clause"],
+		banlist: ['Unreleased', 'Illegal', 'Huntail + Shell Smash + Sucker Punch', 'Leavanny + Knock Off + Sticky Web', 'Sylveon + Hyper Voice + Heal Bell + Wish + Baton Pass']
+	},
+	standard500: {
+		effectType: 'Banlist',
+		ruleset: ['Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', "500 PBV Clause"],
+		banlist: ['Unreleased', 'Illegal', 'Huntail + Shell Smash + Sucker Punch', 'Leavanny + Knock Off + Sticky Web', 'Sylveon + Hyper Voice + Heal Bell + Wish + Baton Pass']
+	},
 	pokemon: {
 		effectType: 'Banlist',
 		validateSet: function (set, format, isNonstandard) {
@@ -679,6 +694,53 @@ exports.BattleFormats = {
 			}
 			if (set.moves && set.moves.length > 6) problems.push((set.name||set.species) + ' has more than six moves.');
 			return problems;
+		}
+	},
+	pbv1000: {
+		effectType: 'Rule',
+		onStart: function () {
+			this.add('rule', '1000 PBV Clause: Limit total PBV of all Pokémon to 1000');
+		},
+		validateTeam: function (team, format) {
+			var speciesTable = {};
+			var totalPBV = 0;
+			for (var i = 0; i < team.length; i++) {
+				totalPBV += team[i].pokebattlevalue;
+			}
+			if(totalPBV > 1000) {
+				return ["You are limited to a total of 1000 PBV for all Pokémon.", "(You have total PBV of " + totalPBV + ")"];
+			}
+		}
+	},
+	pbv750: {
+		effectType: 'Rule',
+		onStart: function () {
+			this.add('rule', '750 PBV Clause: Limit total PBV of all Pokémon to 750');
+		},
+		validateTeam: function (team, format) {
+			var speciesTable = {};
+			var totalPBV = 0;
+			for (var i = 0; i < team.length; i++) {
+				totalPBV += team[i].pokebattlevalue;
+			}
+			if(totalPBV > 750) {
+				return ["You are limited to a total of 750 PBV for all Pokémon.", "(You have total PBV of " + totalPBV + ")"];
+			}
+		}
+	},
+	pbv500: {
+		effectType: 'Rule',
+		onStart: function () {
+			this.add('rule', '500 PBV Clause: Limit total PBV of all Pokémon to 500');
+		},
+		validateTeam: function (team, format) {
+			var totalPBV = 0;
+			for (var i = 0; i < team.length; i++) {
+				totalPBV += team[i].pokebattlevalue;
+			}
+			if(totalPBV > 500) {
+				return ["You are limited to a total of 500 PBV for all Pokémon.", "(You have total PBV of " + totalPBV + ")"];
+			}
 		}
 	}
 };
