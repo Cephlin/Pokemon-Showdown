@@ -8,7 +8,7 @@ exports.BattleFormats = {
 
 	standard: {
 		effectType: 'Banlist',
-		ruleset: ['Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod'],
+		ruleset: ['Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', '1000 PBV Clause'],
 		banlist: ['Unreleased', 'Illegal', 'Huntail + Shell Smash + Sucker Punch', 'Leavanny + Knock Off + Sticky Web', 'Sylveon + Hyper Voice + Heal Bell + Wish + Baton Pass']
 	},
 	standardnext: {
@@ -18,7 +18,7 @@ exports.BattleFormats = {
 	},
 	standardubers: {
 		effectType: 'Banlist',
-		ruleset: ['Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'OHKO Clause', 'Endless Battle Clause', 'HP Percentage Mod'],
+		ruleset: ['Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'OHKO Clause', 'Endless Battle Clause', 'HP Percentage Mod', '1000 PBV Clause'],
 		banlist: ['Unreleased', 'Illegal', 'Huntail + Shell Smash + Sucker Punch', 'Leavanny + Knock Off + Sticky Web', 'Sylveon + Hyper Voice + Heal Bell + Wish + Baton Pass']
 	},
 	standardgbu: {
@@ -696,8 +696,9 @@ exports.BattleFormats = {
 			return problems;
 		}
 	},
-	pbv1000: {
+	pbv1000clause: {
 		effectType: 'Rule',
+		name: '1000 PBV Clause',
 		onStart: function () {
 			this.add('rule', '1000 PBV Clause: Limit total PBV of all Pokémon to 1000');
 		},
@@ -712,8 +713,9 @@ exports.BattleFormats = {
 			}
 		}
 	},
-	pbv750: {
+	pbv750clause: {
 		effectType: 'Rule',
+		name: '750 PBV Clause',
 		onStart: function () {
 			this.add('rule', '750 PBV Clause: Limit total PBV of all Pokémon to 750');
 		},
@@ -728,8 +730,9 @@ exports.BattleFormats = {
 			}
 		}
 	},
-	pbv500: {
+	pbv500clause: {
 		effectType: 'Rule',
+		name: '500 PBV Clause',
 		onStart: function () {
 			this.add('rule', '500 PBV Clause: Limit total PBV of all Pokémon to 500');
 		},
