@@ -246,7 +246,7 @@ module.exports = (function () {
 			if (!template.forme) template.forme = '';
 			if (!template.formeLetter) template.formeLetter = '';
 			if (!template.spriteid) template.spriteid = toId(template.baseSpecies) + (template.baseSpecies !== name ? '-' + toId(template.forme) : '');
-         		if (!template.pokebattlevalue) template.pokebattlevalue = 335
+         	if (!template.pokebattlevalue) template.pokebattlevalue = 335;
 			if (!template.prevo) template.prevo = '';
 			if (!template.evos) template.evos = [];
 			if (!template.nfe) template.nfe = !!template.evos.length;
