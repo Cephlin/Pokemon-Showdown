@@ -705,12 +705,12 @@ exports.BattleFormats = {
 		validateTeam: function (team, format) {
 			var totalPBV = 0;
 			for (var i = 0; i < team.length; i++) {
-            var template = this.getTemplate(team[i].species);
-				totalPBV += template.pokebattlevalue;
+            	totalPBV = totalPBV + team[i].pokebattlevalue;
 			}
 			if(totalPBV > 1000) {
 				return ["You are limited to a total of 1000 PBV for all Pokémon.", "(You have total PBV of " + totalPBV + ")"];
 			}
+			return ["You are limited to a total of 1000 PBV for all Pokémon.", "(You have total PBV of " + totalPBV + ")"];
 		}
 	},
 	pbv750clause: {
@@ -722,8 +722,8 @@ exports.BattleFormats = {
 		validateTeam: function (team, format) {
 			var totalPBV = 0;
 			for (var i = 0; i < team.length; i++) {
-            var template = this.getTemplate(team[i].species);
-				totalPBV += template.pokebattlevalue;
+            			var template = this.getTemplate(team[i]);
+				totalPBV += template.pokebattlevalue();
 			}
 			if(totalPBV > 750) {
 				return ["You are limited to a total of 750 PBV for all Pokémon.", "(You have total PBV of " + totalPBV + ")"];
@@ -739,7 +739,7 @@ exports.BattleFormats = {
 		validateTeam: function (team, format) {
 			var totalPBV = 0;
 			for (var i = 0; i < team.length; i++) {
-            var template = this.getTemplate(team[i].species);
+				var template = this.getTemplate(team[i]);
 				totalPBV += template.pokebattlevalue;
 			}
 			if(totalPBV > 500) {

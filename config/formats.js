@@ -27,7 +27,7 @@ exports.Formats = [
 		section: "XY Singles",
 
 		searchShow: true,
-		ruleset: ['Pokemon', 'Standard 1000', 'Swagger Clause', 'Team Preview', '1000 PBV Clause'],
+		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', 'Team Preview', '1000 PBV Clause'],
 		banlist: []
 	},
 	{
