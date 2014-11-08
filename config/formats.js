@@ -31,6 +31,14 @@ exports.Formats = [
 		banlist: []
 	},
 	{
+		name: "PBV 750",
+		section: "XY Singles",
+
+		challengeShow: false,
+		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', 'Team Preview', 'PBV 750 Clause'],
+		banlist: []
+	},
+	{
 		name: "PBV 500",
 		section: "XY Singles",
 

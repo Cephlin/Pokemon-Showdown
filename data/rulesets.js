@@ -693,15 +693,27 @@ exports.BattleFormats = {
 			var limit = Math.round(parseFloat(totalLimit / 3));
 			
 			for (var i = 0; i < team.length; i++) {
-            	var template = this.getTemplate(team[i].species);
-				totalPBV += template.pokebattlevalue;
-				if (template.pokebattlevalue > limit) {
-					problems.push(template.species + " is over " + limit + " PBV");
-					break;
+				var itemTemplate = this.getTemplate(this.getItem(team[i].item).megaStone);
+				var pokemonTemplate = this.getTemplate(team[i].species);
+				
+				if (pokemonTemplate.baseSpecies == itemTemplate.baseSpecies) {
+					megaTemplate = this.getTemplate(itemTemplate);
+					
+					totalPBV += megaTemplate.pokebattlevalue;
+					
+					if (megaTemplate.pokebattlevalue > limit) {
+						problems.push(megaTemplate.species + " is over" + limit + " PBV");
+					}
+				}else {
+					totalPBV += pokemonTemplate.pokebattlevalue;
+					
+					if (pokemonTemplate.pokebattlevalue > limit) {
+						problems.push(pokemonTemplate.species + " is over " + limit + " PBV");
+					}
 				}
 			}
 			if (totalPBV > totalLimit) {
-				problems.push("You are limited to a total of " + limit + " PBV for all Pokémon.", "You have total PBV of " + totalPBV);
+				problems.push("You are limited to a total of " + totalLimit + " PBV for all Pokémon.", "You have total PBV of " + totalPBV);
 			}
 			
 			return problems;
@@ -719,15 +731,27 @@ exports.BattleFormats = {
 			var limit = Math.round(parseFloat(totalLimit / 3));
 			
 			for (var i = 0; i < team.length; i++) {
-            	var template = this.getTemplate(team[i].species);
-				totalPBV += template.pokebattlevalue;
-				if (template.pokebattlevalue > limit) {
-					problems.push(template.species + " is over " + limit + " PBV");
-					break;
+				var itemTemplate = this.getTemplate(this.getItem(team[i].item).megaStone);
+				var pokemonTemplate = this.getTemplate(team[i].species);
+				
+				if (pokemonTemplate.baseSpecies == itemTemplate.baseSpecies) {
+					megaTemplate = this.getTemplate(itemTemplate);
+					
+					totalPBV += megaTemplate.pokebattlevalue;
+					
+					if (megaTemplate.pokebattlevalue > limit) {
+						problems.push(megaTemplate.species + " is over" + limit + " PBV");
+					}
+				}else {
+					totalPBV += pokemonTemplate.pokebattlevalue;
+					
+					if (pokemonTemplate.pokebattlevalue > limit) {
+						problems.push(pokemonTemplate.species + " is over " + limit + " PBV");
+					}
 				}
 			}
 			if (totalPBV > totalLimit) {
-				problems.push("You are limited to a total of " + limit + " PBV for all Pokémon.", "You have total PBV of " + totalPBV);
+				problems.push("You are limited to a total of " + totalLimit + " PBV for all Pokémon.", "You have total PBV of " + totalPBV);
 			}
 			
 			return problems;
@@ -745,21 +769,23 @@ exports.BattleFormats = {
 			var limit = Math.round(parseFloat(totalLimit / 3));
 			
 			for (var i = 0; i < team.length; i++) {
-				var item = this.getItem(team[i].item);
-				var item_template = this.getTemplate(item.megaStone);
-				var pokemon_template = this.getTemplate(team[i].species);
+				var itemTemplate = this.getTemplate(this.getItem(team[i].item).megaStone);
+				var pokemonTemplate = this.getTemplate(team[i].species);
 				
-				if (pokemon_template.baseSpecies == item_template.baseSpecies) {
-					problems.push("BOOM HEADSHOT");
+				if (pokemonTemplate.baseSpecies == itemTemplate.baseSpecies) {
+					megaTemplate = this.getTemplate(itemTemplate);
+					
+					totalPBV += megaTemplate.pokebattlevalue;
+					
+					if (megaTemplate.pokebattlevalue > limit) {
+						problems.push(megaTemplate.species + " is over" + limit + " PBV");
+					}
 				}else {
-					problems.push("NOT MEGA!!!");
-				}
-
-				var template = this.getTemplate(team[i].species);
-				totalPBV += template.pokebattlevalue;
-				
-				if (template.pokebattlevalue > limit) {
-					problems.push(template.species + " is over " + limit + " PBV");
+					totalPBV += pokemonTemplate.pokebattlevalue;
+					
+					if (pokemonTemplate.pokebattlevalue > limit) {
+						problems.push(pokemonTemplate.species + " is over " + limit + " PBV");
+					}
 				}
 			}
 			if (totalPBV > totalLimit) {
