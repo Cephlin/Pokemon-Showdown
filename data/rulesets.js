@@ -8,7 +8,7 @@ exports.BattleFormats = {
 
 	standard: {
 		effectType: 'Banlist',
-		ruleset: ['Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', '1000 PBV Clause'],
+		ruleset: ['Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod'],
 		banlist: ['Unreleased', 'Illegal', 'Huntail + Shell Smash + Sucker Punch', 'Leavanny + Knock Off + Sticky Web', 'Sylveon + Hyper Voice + Heal Bell + Wish + Baton Pass']
 	},
 	standardnext: {
@@ -18,7 +18,7 @@ exports.BattleFormats = {
 	},
 	standardubers: {
 		effectType: 'Banlist',
-		ruleset: ['Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'OHKO Clause', 'Endless Battle Clause', 'HP Percentage Mod', '1000 PBV Clause'],
+		ruleset: ['Sleep Clause Mod', 'Species Clause', 'Moody Clause', 'OHKO Clause', 'Endless Battle Clause', 'HP Percentage Mod'],
 		banlist: ['Unreleased', 'Illegal', 'Huntail + Shell Smash + Sucker Punch', 'Leavanny + Knock Off + Sticky Web', 'Sylveon + Hyper Voice + Heal Bell + Wish + Baton Pass']
 	},
 	standardgbu: {
@@ -59,21 +59,6 @@ exports.BattleFormats = {
 	standarddoubles: {
 		effectType: 'Banlist',
 		ruleset: ['Species Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Abilities Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod'],
-		banlist: ['Unreleased', 'Illegal', 'Huntail + Shell Smash + Sucker Punch', 'Leavanny + Knock Off + Sticky Web', 'Sylveon + Hyper Voice + Heal Bell + Wish + Baton Pass']
-	},
-	standard1000: {
-		effectType: 'Banlist',
-		ruleset: ['Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', "1000 PBV Clause"],
-		banlist: ['Unreleased', 'Illegal', 'Huntail + Shell Smash + Sucker Punch', 'Leavanny + Knock Off + Sticky Web', 'Sylveon + Hyper Voice + Heal Bell + Wish + Baton Pass']
-	},
-	standard750: {
-		effectType: 'Banlist',
-		ruleset: ['Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', "750 PBV Clause"],
-		banlist: ['Unreleased', 'Illegal', 'Huntail + Shell Smash + Sucker Punch', 'Leavanny + Knock Off + Sticky Web', 'Sylveon + Hyper Voice + Heal Bell + Wish + Baton Pass']
-	},
-	standard500: {
-		effectType: 'Banlist',
-		ruleset: ['Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', "500 PBV Clause"],
 		banlist: ['Unreleased', 'Illegal', 'Huntail + Shell Smash + Sucker Punch', 'Leavanny + Knock Off + Sticky Web', 'Sylveon + Hyper Voice + Heal Bell + Wish + Baton Pass']
 	},
 	pokemon: {
@@ -698,53 +683,90 @@ exports.BattleFormats = {
 	},
 	pbv1000clause: {
 		effectType: 'Rule',
-		name: '1000 PBV Clause',
 		onStart: function () {
-			this.add('rule', '1000 PBV Clause: Limit total PBV of all Pokémon to 1000');
+			this.add('rule', 'PBV 1000 Clause: Limit total PBV of all Pokémon to 1000');
 		},
 		validateTeam: function (team, format) {
+			var problems = [];
+			var totalLimit = 1000;
 			var totalPBV = 0;
+			var limit = Math.round(parseFloat(totalLimit / 3));
+			
 			for (var i = 0; i < team.length; i++) {
-            	totalPBV = totalPBV + team[i].pokebattlevalue;
+            	var template = this.getTemplate(team[i].species);
+				totalPBV += template.pokebattlevalue;
+				if (template.pokebattlevalue > limit) {
+					problems.push(template.species + " is over " + limit + " PBV");
+					break;
+				}
 			}
-			if(totalPBV > 1000) {
-				return ["You are limited to a total of 1000 PBV for all Pokémon.", "(You have total PBV of " + totalPBV + ")"];
+			if (totalPBV > totalLimit) {
+				problems.push("You are limited to a total of " + limit + " PBV for all Pokémon.", "You have total PBV of " + totalPBV);
 			}
-			return ["You are limited to a total of 1000 PBV for all Pokémon.", "(You have total PBV of " + totalPBV + ")"];
+			
+			return problems;
 		}
 	},
 	pbv750clause: {
 		effectType: 'Rule',
-		name: '750 PBV Clause',
 		onStart: function () {
 			this.add('rule', '750 PBV Clause: Limit total PBV of all Pokémon to 750');
 		},
 		validateTeam: function (team, format) {
+			var problems = [];
+			var totalLimit = 750;
 			var totalPBV = 0;
+			var limit = Math.round(parseFloat(totalLimit / 3));
+			
 			for (var i = 0; i < team.length; i++) {
-            			var template = this.getTemplate(team[i]);
-				totalPBV += template.pokebattlevalue();
+            	var template = this.getTemplate(team[i].species);
+				totalPBV += template.pokebattlevalue;
+				if (template.pokebattlevalue > limit) {
+					problems.push(template.species + " is over " + limit + " PBV");
+					break;
+				}
 			}
-			if(totalPBV > 750) {
-				return ["You are limited to a total of 750 PBV for all Pokémon.", "(You have total PBV of " + totalPBV + ")"];
+			if (totalPBV > totalLimit) {
+				problems.push("You are limited to a total of " + limit + " PBV for all Pokémon.", "You have total PBV of " + totalPBV);
 			}
+			
+			return problems;
 		}
 	},
 	pbv500clause: {
 		effectType: 'Rule',
-		name: '500 PBV Clause',
 		onStart: function () {
 			this.add('rule', '500 PBV Clause: Limit total PBV of all Pokémon to 500');
 		},
 		validateTeam: function (team, format) {
+			var problems = [];
+			var totalLimit = 500;
 			var totalPBV = 0;
+			var limit = Math.round(parseFloat(totalLimit / 3));
+			
 			for (var i = 0; i < team.length; i++) {
-				var template = this.getTemplate(team[i]);
+				var item = this.getItem(team[i].item);
+				var item_template = this.getTemplate(item.megaStone);
+				var pokemon_template = this.getTemplate(team[i].species);
+				
+				if (pokemon_template.baseSpecies == item_template.baseSpecies) {
+					problems.push("BOOM HEADSHOT");
+				}else {
+					problems.push("NOT MEGA!!!");
+				}
+
+				var template = this.getTemplate(team[i].species);
 				totalPBV += template.pokebattlevalue;
+				
+				if (template.pokebattlevalue > limit) {
+					problems.push(template.species + " is over " + limit + " PBV");
+				}
 			}
-			if(totalPBV > 500) {
-				return ["You are limited to a total of 500 PBV for all Pokémon.", "(You have total PBV of " + totalPBV + ")"];
+			if (totalPBV > totalLimit) {
+				problems.push("You are limited to a total of " + totalLimit + " PBV for all Pokémon.", "You have total PBV of " + totalPBV);
 			}
+			
+			return problems;
 		}
 	}
 };

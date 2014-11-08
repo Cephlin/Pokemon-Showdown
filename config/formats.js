@@ -23,12 +23,19 @@ exports.Formats = [
 		ruleset: ['PotD', 'Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod']
 	},
 	{
-		name: "1000 PBV",
+		name: "PBV 1000",
 		section: "XY Singles",
 
-		searchShow: true,
-		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', 'Team Preview', '1000 PBV Clause'],
+		challengeShow: false,
+		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', 'Team Preview', 'PBV 1000 Clause'],
 		banlist: []
+	},
+	{
+		name: "PBV 500",
+		section: "XY Singles",
+
+		challengeShow: false,
+		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', 'Team Preview', 'PBV 500 Clause'],
 	},
 	{
 		name: "OU",
