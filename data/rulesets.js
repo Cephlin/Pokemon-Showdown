@@ -692,26 +692,26 @@ exports.BattleFormats = {
 			var totalPBV = 0;
 			var limit = Math.round(parseFloat(totalLimit / 3));
 			
+			// Loop through all mons in the team
 			for (var i = 0; i < team.length; i++) {
 				var itemTemplate = this.getTemplate(this.getItem(team[i].item).megaStone);
 				var pokemonTemplate = this.getTemplate(team[i].species);
 				
+				// Check if mega then swap the pokeon to be the mega template instead
 				if (pokemonTemplate.baseSpecies == itemTemplate.baseSpecies) {
-					megaTemplate = this.getTemplate(itemTemplate);
-					
-					totalPBV += megaTemplate.pokebattlevalue;
-					
-					if (megaTemplate.pokebattlevalue > limit) {
-						problems.push(megaTemplate.species + " is over" + limit + " PBV");
-					}
-				}else {
-					totalPBV += pokemonTemplate.pokebattlevalue;
-					
-					if (pokemonTemplate.pokebattlevalue > limit) {
-						problems.push(pokemonTemplate.species + " is over " + limit + " PBV");
-					}
+					pokemonTemplate = this.getTemplate(itemTemplate);
+				}
+				
+				// Add the PBV to the total PBV
+				totalPBV += pokemonTemplate.pokebattlevalue;
+				
+				// If the pbv is over the single pokeon limit
+				if (pokemonTemplate.pokebattlevalue > limit) {
+					problems.push(pokemonTemplate.species + " is over " + limit + " PBV");
 				}
 			}
+			
+			// Check total PBV vs the total limit
 			if (totalPBV > totalLimit) {
 				problems.push("You are limited to a total of " + totalLimit + " PBV for all Pokémon.", "You have total PBV of " + totalPBV);
 			}
@@ -730,26 +730,26 @@ exports.BattleFormats = {
 			var totalPBV = 0;
 			var limit = Math.round(parseFloat(totalLimit / 3));
 			
+			// Loop through all mons in the team
 			for (var i = 0; i < team.length; i++) {
 				var itemTemplate = this.getTemplate(this.getItem(team[i].item).megaStone);
 				var pokemonTemplate = this.getTemplate(team[i].species);
 				
+				// Check if mega then swap the pokeon to be the mega template instead
 				if (pokemonTemplate.baseSpecies == itemTemplate.baseSpecies) {
-					megaTemplate = this.getTemplate(itemTemplate);
-					
-					totalPBV += megaTemplate.pokebattlevalue;
-					
-					if (megaTemplate.pokebattlevalue > limit) {
-						problems.push(megaTemplate.species + " is over" + limit + " PBV");
-					}
-				}else {
-					totalPBV += pokemonTemplate.pokebattlevalue;
-					
-					if (pokemonTemplate.pokebattlevalue > limit) {
-						problems.push(pokemonTemplate.species + " is over " + limit + " PBV");
-					}
+					pokemonTemplate = this.getTemplate(itemTemplate);
+				}
+				
+				// Add the PBV to the total PBV
+				totalPBV += pokemonTemplate.pokebattlevalue;
+				
+				// If the pbv is over the single pokeon limit
+				if (pokemonTemplate.pokebattlevalue > limit) {
+					problems.push(pokemonTemplate.species + " is over " + limit + " PBV");
 				}
 			}
+			
+			// Check total PBV vs the total limit
 			if (totalPBV > totalLimit) {
 				problems.push("You are limited to a total of " + totalLimit + " PBV for all Pokémon.", "You have total PBV of " + totalPBV);
 			}
@@ -768,26 +768,26 @@ exports.BattleFormats = {
 			var totalPBV = 0;
 			var limit = Math.round(parseFloat(totalLimit / 3));
 			
+			// Loop through all mons in the team
 			for (var i = 0; i < team.length; i++) {
 				var itemTemplate = this.getTemplate(this.getItem(team[i].item).megaStone);
 				var pokemonTemplate = this.getTemplate(team[i].species);
 				
+				// Check if mega then swap the pokeon to be the mega template instead
 				if (pokemonTemplate.baseSpecies == itemTemplate.baseSpecies) {
-					megaTemplate = this.getTemplate(itemTemplate);
-					
-					totalPBV += megaTemplate.pokebattlevalue;
-					
-					if (megaTemplate.pokebattlevalue > limit) {
-						problems.push(megaTemplate.species + " is over" + limit + " PBV");
-					}
-				}else {
-					totalPBV += pokemonTemplate.pokebattlevalue;
-					
-					if (pokemonTemplate.pokebattlevalue > limit) {
-						problems.push(pokemonTemplate.species + " is over " + limit + " PBV");
-					}
+					pokemonTemplate = this.getTemplate(itemTemplate);
+				}
+				
+				// Add the PBV to the total PBV
+				totalPBV += pokemonTemplate.pokebattlevalue;
+				
+				// If the pbv is over the single pokeon limit
+				if (pokemonTemplate.pokebattlevalue > limit) {
+					problems.push(pokemonTemplate.species + " is over " + limit + " PBV");
 				}
 			}
+			
+			// Check total PBV vs the total limit
 			if (totalPBV > totalLimit) {
 				problems.push("You are limited to a total of " + totalLimit + " PBV for all Pokémon.", "You have total PBV of " + totalPBV);
 			}
