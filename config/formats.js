@@ -10,6 +10,8 @@ exports.Formats = [
 		name: "Random Battle",
 		section: "XY Singles",
 
+		searchShow: false,
+		challengeShow: false,
 		team: 'random',
 		ruleset: ['PotD', 'Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod']
 	},
@@ -20,13 +22,13 @@ exports.Formats = [
 		team: 'random',
 		challengeShow: false,
 		rated: false,
+		searchShow: false,
 		ruleset: ['PotD', 'Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod']
 	},
 	{
 		name: "PBV 1000",
 		section: "XY Singles",
 
-		challengeShow: false,
 		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', 'Team Preview', 'PBV 1000 Clause'],
 		banlist: []
 	},
@@ -34,7 +36,6 @@ exports.Formats = [
 		name: "PBV 750",
 		section: "XY Singles",
 
-		challengeShow: false,
 		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', 'Team Preview', 'PBV 750 Clause'],
 		banlist: []
 	},
@@ -42,13 +43,37 @@ exports.Formats = [
 		name: "PBV 500",
 		section: "XY Singles",
 
-		challengeShow: false,
+		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', 'Team Preview', 'PBV 500 Clause'],
+	},
+	{
+		name: "PBV 1000 ORAS",
+		section: "XY Singles",
+
+		mod: 'oras',
+		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', 'Team Preview', 'PBV 1000 Clause'],
+		banlist: []
+	},
+	{
+		name: "PBV 750 ORAS",
+		section: "XY Singles",
+
+		mod: 'oras',
+		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', 'Team Preview', 'PBV 750 Clause'],
+		banlist: []
+	},
+	{
+		name: "PBV 500 ORAS",
+		section: "XY Singles",
+
+		mod: 'oras',
 		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', 'Team Preview', 'PBV 500 Clause'],
 	},
 	{
 		name: "OU",
 		section: "XY Singles",
 
+		searchShow: false,
+		challengeShow: false,
 		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
 		banlist: ['Uber', 'Soul Dew', 'Gengarite', 'Kangaskhanite', 'Lucarionite', 'Mawilite']
 	},
@@ -57,6 +82,7 @@ exports.Formats = [
 		section: "XY Singles",
 
 		searchShow: false,
+		challengeShow: false,
 		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', 'Team Preview'],
 		banlist: []
 	},
@@ -64,6 +90,7 @@ exports.Formats = [
 		name: "Ubers (suspect test)",
 		section: "XY Singles",
 
+		searchShow: false,
 		challengeShow: false,
 		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', 'Team Preview'],
 		banlist: []
@@ -72,6 +99,8 @@ exports.Formats = [
 		name: "UU",
 		section: "XY Singles",
 
+		searchShow: false,
+		challengeShow: false,
 		ruleset: ['OU'],
 		banlist: ['OU', 'BL', 'Heracronite', 'Gardevoirite', 'Medichamite', 'Drizzle', 'Drought', 'Shadow Tag']
 	},
@@ -79,6 +108,8 @@ exports.Formats = [
 		name: "RU",
 		section: "XY Singles",
 
+		searchShow: false,
+		challengeShow: false,
 		ruleset: ['UU'],
 		banlist: ['UU', 'BL2']
 	},
@@ -86,6 +117,8 @@ exports.Formats = [
 		name: "NU",
 		section: "XY Singles",
 
+		searchShow: false,
+		challengeShow: false,
 		ruleset: ['RU'],
 		banlist: ['RU', 'BL3']
 	},
@@ -93,6 +126,8 @@ exports.Formats = [
 		name: "LC",
 		section: "XY Singles",
 
+		searchShow: false,
+		challengeShow: false,
 		maxLevel: 5,
 		ruleset: ['Pokemon', 'Standard', 'Team Preview', 'Little Cup'],
 		banlist: ['Dragon Rage', 'Sonic Boom', 'Swagger', 'LC Uber', 'Gligar']
@@ -101,6 +136,8 @@ exports.Formats = [
 		name: "CAP Plasmanta Playtest",
 		section: "XY Singles",
 
+		searchShow: false,
+		challengeShow: false,
 		ruleset: ['CAP Pokemon', 'Standard', 'Team Preview', 'Swagger Clause', 'Baton Pass Clause'],
 		banlist: ['Uber', 'Gengarite', 'Kangaskhanite', 'Lucarionite', 'Soul Dew',
 			'Tomohawk', 'Necturna', 'Mollux', 'Aurumoth', 'Malaconda', 'Cawmodore', 'Volkraken', 'Syclant', 'Revenankh', 'Pyroak', 'Fidgit', 'Stratagem', 'Arghonaut', 'Kitsunoh', 'Cyclohm', 'Colossoil', 'Krilowatt', 'Voodoom'
@@ -110,6 +147,8 @@ exports.Formats = [
 		name: "Battle Spot Singles",
 		section: "XY Singles",
 
+		searchShow: false,
+		challengeShow: false,
 		onBegin: function () {
 			this.debug('cutting down to 3');
 			this.p1.pokemon = this.p1.pokemon.slice(0, 3);
@@ -128,6 +167,7 @@ exports.Formats = [
 		name: "Custom Game",
 		section: "XY Singles",
 
+		challengeShow: false,
 		searchShow: false,
 		canUseRandomTeam: true,
 		debug: true,
@@ -144,6 +184,8 @@ exports.Formats = [
 		name: "Random Doubles Battle",
 		section: "XY Doubles",
 
+		searchShow: false,
+		challengeShow: false,
 		gameType: 'doubles',
 		team: 'randomDoubles',
 		ruleset: ['PotD', 'Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod']
@@ -152,6 +194,8 @@ exports.Formats = [
 		name: "Smogon Doubles",
 		section: "XY Doubles",
 
+		searchShow: false,
+		challengeShow: false,
 		gameType: 'doubles',
 		ruleset: ['Pokemon', 'Standard Doubles', 'Team Preview'],
 		banlist: ['Soul Dew', 'Dark Void',
@@ -163,6 +207,8 @@ exports.Formats = [
 		name: "Smogon Doubles Ubers",
 		section: "XY Doubles",
 
+		searchShow: false,
+		challengeShow: false,
 		gameType: 'doubles',
 		ruleset: ['Pokemon', 'Species Clause', 'Moody Clause', 'OHKO Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Team Preview'],
 		banlist: ['Unreleased', 'Illegal', 'Dark Void']
@@ -171,6 +217,8 @@ exports.Formats = [
 		name: "Smogon Doubles UU",
 		section: "XY Doubles",
 
+		searchShow: false,
+		challengeShow: false,
 		gameType: 'doubles',
 		ruleset: ['Smogon Doubles'],
 		banlist: ['Abomasnow', 'Aegislash', 'Amoonguss', 'Aromatisse', 'Azumarill', 'Bisharp', 'Breloom', 'Chandelure', 'Charizard', 'Conkeldurr',
@@ -185,6 +233,8 @@ exports.Formats = [
 		name: "Battle Spot Doubles",
 		section: "XY Doubles",
 
+		searchShow: false,
+		challengeShow: false,
 		gameType: 'doubles',
 		onBegin: function () {
 			this.debug('cutting down to 4');
@@ -203,6 +253,8 @@ exports.Formats = [
 		name: "Battle Spot Special 6",
 		section: "XY Doubles",
 
+		searchShow: false,
+		challengeShow: false,
 		gameType: 'doubles',
 		onBegin: function () {
 			this.debug('cutting down to 4');
@@ -225,6 +277,8 @@ exports.Formats = [
 		name: "VGC 2014",
 		section: "XY Doubles",
 
+		searchShow: false,
+		challengeShow: false,
 		gameType: 'doubles',
 		onBegin: function () {
 			this.debug('cutting down to 4');
@@ -245,6 +299,8 @@ exports.Formats = [
 		name: "Doubles Challenge Cup",
 		section: 'XY Doubles',
 
+		searchShow: false,
+		challengeShow: false,
 		gameType: 'doubles',
 		team: 'randomCC',
 		searchShow: false,
@@ -254,6 +310,8 @@ exports.Formats = [
 		name: "Doubles Custom Game",
 		section: "XY Doubles",
 
+		searchShow: false,
+		challengeShow: false,
 		gameType: 'doubles',
 		searchShow: false,
 		canUseRandomTeam: true,
@@ -271,6 +329,8 @@ exports.Formats = [
 		name: "Random Triples Battle",
 		section: "XY Triples",
 
+		searchShow: false,
+		challengeShow: false,
 		gameType: 'triples',
 		team: 'randomDoubles',
 		ruleset: ['PotD', 'Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod']
@@ -279,6 +339,8 @@ exports.Formats = [
 		name: "Smogon Triples",
 		section: "XY Triples",
 
+		searchShow: false,
+		challengeShow: false,
 		gameType: 'triples',
 		ruleset: ['Pokemon', 'Species Clause', 'OHKO Clause', 'Moody Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Team Preview'],
 		banlist: ['Illegal', 'Unreleased', 'Arceus', 'Dialga', 'Giratina', 'Giratina-Origin', 'Groudon', 'Ho-Oh', 'Kyogre', 'Kyurem-White',
@@ -290,6 +352,8 @@ exports.Formats = [
 		name: "Battle Spot Triples",
 		section: "XY Triples",
 
+		searchShow: false,
+		challengeShow: false,
 		gameType: 'triples',
 		maxForcedLevel: 50,
 		ruleset: ['Pokemon', 'Standard GBU', 'Team Preview'],
@@ -301,6 +365,8 @@ exports.Formats = [
 		name: "Triples Challenge Cup",
 		section: "XY Triples",
 
+		searchShow: false,
+		challengeShow: false,
 		gameType: 'triples',
 		team: 'randomCC',
 		searchShow: false,
@@ -310,6 +376,8 @@ exports.Formats = [
 		name: "Triples Custom Game",
 		section: "XY Triples",
 
+		searchShow: false,
+		challengeShow: false,
 		gameType: 'triples',
 		searchShow: false,
 		canUseRandomTeam: true,
@@ -328,6 +396,8 @@ exports.Formats = [
 		name: "[Seasonal] Seasoning's Greetings",
 		team: 'randomSeasonal',
 		mod: 'gen5',
+		searchShow: false,
+		challengeShow: false,
 		section: 'Seasonal',
 		ruleset: ['PotD', 'Pokemon', 'Sleep Clause Mod', 'HP Percentage Mod']
 	},
@@ -667,6 +737,7 @@ exports.Formats = [
 				move.type = type;
 				this.add('-message', 'lol trolled, I changed yo move type');
 			}
+		
 			
 			// Additional changes
 			if (move.id === 'bulkup') {
