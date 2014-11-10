@@ -681,6 +681,78 @@ exports.BattleFormats = {
 			return problems;
 		}
 	},
+	pbv1500clause: {
+		effectType: 'Rule',
+		onStart: function () {
+			this.add('rule', '1500 PBV Clause: Limit total PBV of all Pokémon to 500');
+		},
+		validateTeam: function (team, format) {
+			var problems = [];
+			
+			var totalLimit = 1500;
+			var totalPBV = 0;
+			var limit = Math.round(parseFloat(totalLimit / 3));
+			
+			var bpCount = -1;
+			var bpPBV = 15;
+			var bpTotalPBV = 0;
+			
+			var evioliteMultiplier = 1.3;
+			var evioliteTotal = 0;
+			
+			// Loop through all mons in the team
+			for (var i = 0; i < team.length; i++) {
+				var itemTemplate = this.getTemplate(this.getItem(team[i].item).megaStone);
+				var pokemonTemplate = this.getTemplate(team[i].species);
+				
+				// Check if the pomeon is a mega and fetch the template if so
+				if (pokemonTemplate.baseSpecies == itemTemplate.baseSpecies) {
+					pokemonTemplate = this.getTemplate(itemTemplate);
+				}
+				
+				// The pokemon has baton pass increment bpCount
+				if (team[i].moves.indexOf('Baton Pass') > -1) bpCount++;		
+				
+				// If the pokemon is holding an eviolite and has a high evolution then multiply the pbv
+				if( team[i].item == "Eviolite") {
+					// Add the PBV * Eviolite Multiplier to the total PBV and evioliteTotal
+					pbvWithEviolite = pokemonTemplate.pokebattlevalue * evioliteMultiplier
+					totalPBV += pbvWithEviolite;
+					evioliteTotal += pbvWithEviolite - pokemonTemplate.pokebattlevalue;
+					
+					// If the pbv is over the single pokeon limit
+					if (pbvWithEviolite > limit) {
+						problems.push(pokemonTemplate.species + " is over " + limit + " PBV.");
+					}
+				}else {
+					// Add the PBV to the total PBV
+					totalPBV += pokemonTemplate.pokebattlevalue;
+					
+					// If the pbv is over the single pokeon limit
+					if (pokemonTemplate.pokebattlevalue > limit) {
+						problems.push(pokemonTemplate.species + " is over " + limit + " PBV.");
+					}
+				}				
+			}
+			
+			// Add the baton pass PBV to the total PBV
+			if (bpCount >= 0) {
+				bpTotalPBV = bpPBV * Math.pow(2, bpCount);
+				totalPBV += bpTotalPBV;
+			}
+			
+			// Check total PBV vs the total limit
+			if (totalPBV > totalLimit) {
+				
+				problems.push("You are limited to a total of " + totalLimit + " PBV for all Pokémon.");
+				problems.push("You have total PBV of " + totalPBV + ".");
+				problems.push("You have " + (bpCount + 1) + " Baton Pass users, adding " + bpTotalPBV + " PBV.");
+				problems.push("You have " + evioliteTotal + " PBV added from Eviolite.");
+			}
+			
+			return problems;
+		}
+	},
 	pbv1000clause: {
 		effectType: 'Rule',
 		onStart: function () {
@@ -844,6 +916,78 @@ exports.BattleFormats = {
 			var problems = [];
 			
 			var totalLimit = 500;
+			var totalPBV = 0;
+			var limit = Math.round(parseFloat(totalLimit / 3));
+			
+			var bpCount = -1;
+			var bpPBV = 15;
+			var bpTotalPBV = 0;
+			
+			var evioliteMultiplier = 1.3;
+			var evioliteTotal = 0;
+			
+			// Loop through all mons in the team
+			for (var i = 0; i < team.length; i++) {
+				var itemTemplate = this.getTemplate(this.getItem(team[i].item).megaStone);
+				var pokemonTemplate = this.getTemplate(team[i].species);
+				
+				// Check if the pomeon is a mega and fetch the template if so
+				if (pokemonTemplate.baseSpecies == itemTemplate.baseSpecies) {
+					pokemonTemplate = this.getTemplate(itemTemplate);
+				}
+				
+				// The pokemon has baton pass increment bpCount
+				if (team[i].moves.indexOf('Baton Pass') > -1) bpCount++;		
+				
+				// If the pokemon is holding an eviolite and has a high evolution then multiply the pbv
+				if( team[i].item == "Eviolite") {
+					// Add the PBV * Eviolite Multiplier to the total PBV and evioliteTotal
+					pbvWithEviolite = pokemonTemplate.pokebattlevalue * evioliteMultiplier
+					totalPBV += pbvWithEviolite;
+					evioliteTotal += pbvWithEviolite - pokemonTemplate.pokebattlevalue;
+					
+					// If the pbv is over the single pokeon limit
+					if (pbvWithEviolite > limit) {
+						problems.push(pokemonTemplate.species + " is over " + limit + " PBV.");
+					}
+				}else {
+					// Add the PBV to the total PBV
+					totalPBV += pokemonTemplate.pokebattlevalue;
+					
+					// If the pbv is over the single pokeon limit
+					if (pokemonTemplate.pokebattlevalue > limit) {
+						problems.push(pokemonTemplate.species + " is over " + limit + " PBV.");
+					}
+				}				
+			}
+			
+			// Add the baton pass PBV to the total PBV
+			if (bpCount >= 0) {
+				bpTotalPBV = bpPBV * Math.pow(2, bpCount);
+				totalPBV += bpTotalPBV;
+			}
+			
+			// Check total PBV vs the total limit
+			if (totalPBV > totalLimit) {
+				
+				problems.push("You are limited to a total of " + totalLimit + " PBV for all Pokémon.");
+				problems.push("You have total PBV of " + totalPBV + ".");
+				problems.push("You have " + (bpCount + 1) + " Baton Pass users, adding " + bpTotalPBV + " PBV.");
+				problems.push("You have " + evioliteTotal + " PBV added from Eviolite.");
+			}
+			
+			return problems;
+		}
+	},
+	pbv250clause: {
+		effectType: 'Rule',
+		onStart: function () {
+			this.add('rule', '250 PBV Clause: Limit total PBV of all Pokémon to 500');
+		},
+		validateTeam: function (team, format) {
+			var problems = [];
+			
+			var totalLimit = 250;
 			var totalPBV = 0;
 			var limit = Math.round(parseFloat(totalLimit / 3));
 			

@@ -787,6 +787,49 @@ var commands = exports.commands = {
 
 		this.sendReplyBox("" + atkName + " is " + factor + "x effective against " + defName + ".");
 	},
+	
+	pokedex: 'pbv',
+	pbv: function (target, room, user, connection, cmd) {
+		if (!this.canBroadcast()) return;
+
+		var buffer = '';
+		var targetId = toId(target);
+		if (targetId === '' + parseInt(targetId)) {
+			for (var p in Tools.data.Pokedex) {
+				var pokemon = Tools.getTemplate(p);
+				if (pokemon.num === parseInt(target)) {
+					target = pokemon.species;
+					targetId = pokemon.id;
+					break;
+				}
+			}
+		}
+		var newTargets = Tools.dataSearch(target);
+		if (newTargets && newTargets.length) {
+			for (var i = 0; i < newTargets.length; ++i) {
+				if (newTargets[i].id !== targetId && !Tools.data.Aliases[targetId] && !i) {
+					buffer = "No Pokemon named '" + target + "' was found. Showing the data of '" + newTargets[0].name + "' instead.\n";
+				}
+				
+				
+			}
+		} else {
+			return this.sendReply("No Pokemon, item, move, ability or nature named '" + target + "' was found. (Check your spelling?)");
+		}
+
+		var details;
+		var pokemon = Tools.getTemplate(newTargets[0].name);
+		details = {
+			"Pokemon": pokemon.species,
+			"PBV": pokemon.pokebattlevalue
+		};
+
+		buffer += '|raw|<font size="1">' + Object.keys(details).map(function (detail) {
+			return '<font color=#585858>' + detail + (details[detail] !== '' ? ':</font> ' + details[detail] : '</font>');
+		}).join("&nbsp;|&ThickSpace;") + '</font>';
+		
+		this.sendReply(buffer);
+	},
 
 	uptime: function (target, room, user) {
 		if (!this.canBroadcast()) return;
@@ -1435,6 +1478,11 @@ var commands = exports.commands = {
 			this.sendReply("/data [pokemon/item/move/ability] - Get details on this pokemon/item/move/ability/nature.");
 			this.sendReply("!data [pokemon/item/move/ability] - Show everyone these details. Requires: + % @ & ~");
 		}
+		if (target === 'data') {
+			matched = true;
+			this.sendReply("/pbv [pokemon/] - Get PokeBattle Value for the pokémon.");
+			this.sendReply("!pbv [pokemon] - Show everyone these details. Requires: + % @ & ~");
+		}
 		if (target === 'details' || target === 'dt') {
 			matched = true;
 			this.sendReply("/details [pokemon] - Get additional details on this pokemon/item/move/ability/nature.");
@@ -1729,7 +1777,7 @@ var commands = exports.commands = {
 		}
 		if (!target) {
 			this.sendReply("COMMANDS: /nick, /avatar, /rating, /whois, /msg, /reply, /ignore, /away, /back, /timestamps, /highlight");
-			this.sendReply("INFORMATIONAL COMMANDS: /data, /dexsearch, /groups, /opensource, /avatars, /faq, /rules, /intro, /tiers, /othermetas, /learn, /analysis, /calc (replace / with ! to broadcast. Broadcasting requires: + % @ & ~)");
+			this.sendReply("INFORMATIONAL COMMANDS: /data, /pbv, /dexsearch, /groups, /opensource, /avatars, /faq, /rules, /intro, /tiers, /othermetas, /learn, /analysis, /calc (replace / with ! to broadcast. Broadcasting requires: + % @ & ~)");
 			if (user.group !== Config.groupsranking[0]) {
 				this.sendReply("DRIVER COMMANDS: /warn, /mute, /unmute, /alts, /forcerename, /modlog, /lock, /unlock, /announce, /redirect");
 				this.sendReply("MODERATOR COMMANDS: /ban, /unban, /ip");
