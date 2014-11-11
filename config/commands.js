@@ -610,6 +610,7 @@ var commands = exports.commands = {
 		
 		var buffer = '';
 		var targets = target.split(',');
+		var totalPBV = 0;
 		
 		for (var i in targets) {
 			var isNotSearch = false;
@@ -625,9 +626,11 @@ var commands = exports.commands = {
 					var pokemon = Tools.getTemplate(p);
 					if (pokemon.num === parseInt(target)) {
 						target = pokemon.species;
-						targetId = pokemon.id;					  
+						targetId = pokemon.id;			  
 						break;
 					}
+					
+					buffer += '|c|~|/data-' + newTargets[i].searchType + ' ' + newTargets[i].name + '\n';
 				}
 			}
 
@@ -646,16 +649,20 @@ var commands = exports.commands = {
 			var details;
 			var pokemon = Tools.getTemplate(newTargets[0].name);
 			details = {
-			"Pokemon": pokemon.species,
-			"PBV": pokemon.pokebattlevalue
+				"Pokemon": pokemon.species,
+				"PBV": pokemon.pokebattlevalue
 			};
+			
+			totalPBV += pokemon.pokebattlevalue;
 
 			buffer += '|raw|<font size="1">' + Object.keys(details).map(function (detail) {
-			return '<font color=#585858>' + detail + (details[detail] !== '' ? ':</font> ' + details[detail] : '</font>');
+				return '<font color=#585858>' + detail + (details[detail] !== '' ? ':</font> ' + details[detail] : '</font>');
 			}).join("&nbsp;|&ThickSpace;") + '</font>\n';
-			}
+		}
+		
+		buffer += '|raw|<font size="1"><font color=#585858>PBV Total:</font> ' + totalPBV + '</font></font>';
 
-			this.sendReply(buffer);
+		this.sendReply(buffer);
 	},
 
 	learnset: 'learn',
