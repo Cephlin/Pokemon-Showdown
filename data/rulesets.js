@@ -716,8 +716,8 @@ exports.BattleFormats = {
 				// If the pokemon is holding an eviolite and has a high evolution then multiply the pbv
 				if( team[i].item == "Eviolite") {
 					// Add the PBV * Eviolite Multiplier to the total PBV and evioliteTotal
-               // Horible formula to account for js maths weirdness
-               // See: http://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-in-javascript
+					// Horible formula to account for js maths weirdness
+					// See: http://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-in-javascript
 					pbvWithEviolite = +(Math.round((pokemonTemplate.pokebattlevalue * evioliteMultiplier) + "e+2")  + "e-2");
 					totalPBV += pbvWithEviolite;
 					evioliteTotal += pbvWithEviolite - pokemonTemplate.pokebattlevalue;
@@ -790,10 +790,12 @@ exports.BattleFormats = {
 				// If the pokemon is holding an eviolite and has a high evolution then multiply the pbv
 				if( team[i].item == "Eviolite") {
 					if (!team[i].evoLevel) {
-						// Add the PBV * Eviolite Multiplier to the total PBV and evioliteTotal
-						pbvWithEviolite = pokemonTemplate.pokebattlevalue * evioliteMultiplier
-						totalPBV += pbvWithEviolite;
-						evioliteTotal += pbvWithEviolite - pokemonTemplate.pokebattlevalue;
+					// Add the PBV * Eviolite Multiplier to the total PBV and evioliteTotal
+					// Horible formula to account for js maths weirdness
+					// See: http://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-in-javascript
+					pbvWithEviolite = +(Math.round((pokemonTemplate.pokebattlevalue * evioliteMultiplier) + "e+2")  + "e-2");
+					totalPBV += pbvWithEviolite;
+					evioliteTotal += pbvWithEviolite - pokemonTemplate.pokebattlevalue;
 						
 						// If the pbv is over the single pokeon limit
 						if (pbvWithEviolite > limit) {
@@ -872,9 +874,11 @@ exports.BattleFormats = {
 				// If the pokemon is holding an eviolite and has a high evolution then multiply the pbv
 				if( team[i].item == "Eviolite") {
 					// Add the PBV * Eviolite Multiplier to the total PBV and evioliteTotal
-					pbvWithEviolite = pokemonTemplate.pokebattlevalue * evioliteMultiplier
+					// Horible formula to account for js maths weirdness
+					// See: http://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-in-javascript
+					pbvWithEviolite = +(Math.round((pokemonTemplate.pokebattlevalue * evioliteMultiplier) + "e+2")  + "e-2");
 					totalPBV += pbvWithEviolite;
-					evioliteTotal += pbvWithEviolite - pokemonTemplate.pokebattlevalue;
+					evioliteTotal += pbvWithEviolite - pokemonTemplate.pokebattlevalue;s
 					
 					// If the pbv is over the single pokeon limit
 					if (pbvWithEviolite > limit) {
@@ -944,7 +948,9 @@ exports.BattleFormats = {
 				// If the pokemon is holding an eviolite and has a high evolution then multiply the pbv
 				if( team[i].item == "Eviolite") {
 					// Add the PBV * Eviolite Multiplier to the total PBV and evioliteTotal
-					pbvWithEviolite = pokemonTemplate.pokebattlevalue * evioliteMultiplier
+					// Horible formula to account for js maths weirdness
+					// See: http://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-in-javascript
+					pbvWithEviolite = +(Math.round((pokemonTemplate.pokebattlevalue * evioliteMultiplier) + "e+2")  + "e-2");
 					totalPBV += pbvWithEviolite;
 					evioliteTotal += pbvWithEviolite - pokemonTemplate.pokebattlevalue;
 					
@@ -1016,7 +1022,9 @@ exports.BattleFormats = {
 				// If the pokemon is holding an eviolite and has a high evolution then multiply the pbv
 				if( team[i].item == "Eviolite") {
 					// Add the PBV * Eviolite Multiplier to the total PBV and evioliteTotal
-					pbvWithEviolite = pokemonTemplate.pokebattlevalue * evioliteMultiplier
+					// Horible formula to account for js maths weirdness
+					// See: http://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-in-javascript
+					pbvWithEviolite = +(Math.round((pokemonTemplate.pokebattlevalue * evioliteMultiplier) + "e+2")  + "e-2");
 					totalPBV += pbvWithEviolite;
 					evioliteTotal += pbvWithEviolite - pokemonTemplate.pokebattlevalue;
 					
