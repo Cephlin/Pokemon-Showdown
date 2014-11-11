@@ -796,7 +796,7 @@ var commands = exports.commands = {
       
       for (var i in targets) {
 			var isNotSearch = false;
-			target = targets[i].trim().toLowerCase();
+			var target = targets[i].trim().toLowerCase();
 			if (target.slice(0, 1) === '!') {
 				isNotSearch = true;
 				target = target.slice(1);
