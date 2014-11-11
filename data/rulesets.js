@@ -860,7 +860,7 @@ exports.BattleFormats = {
 					// See: http://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-in-javascript
 					pbvWithEviolite = +(Math.round((pokemonTemplate.pokebattlevalue * evioliteMultiplier) + "e+2")  + "e-2");
 					totalPBV += pbvWithEviolite;
-					evioliteTotal += pbvWithEviolite - pokemonTemplate.pokebattlevalue;s
+					evioliteTotal += pbvWithEviolite - pokemonTemplate.pokebattlevalue;
 					
 					// If the pbv is over the single pokeon limit
 					if (pbvWithEviolite > limit) {
