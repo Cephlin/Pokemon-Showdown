@@ -318,7 +318,8 @@ var commands = exports.commands = {
 					"Height": pokemon.heightm + " m",
 					"Weight": pokemon.weightkg + " kg <em>(" + weighthit + " BP)</em>",
 					"Dex Colour": pokemon.color,
-					"Egg Group(s)": pokemon.eggGroups.join(", ")
+					"Egg Group(s)": pokemon.eggGroups.join(", "),
+					"PBV: ": pokemon.pokebattlevalue
 				};
 				if (!pokemon.evos.length) {
 					details["<font color=#585858>Does Not Evolve</font>"] = "";
@@ -792,50 +793,53 @@ var commands = exports.commands = {
 	pbv: function (target, room, user, connection, cmd) {
 		if (!this.canBroadcast()) return;
       
-      var buffer = '';
-      
-      for (var i in targets) {
-			var isNotSearch = false;
-			var target = targets[i].trim().toLowerCase();
-			if (target.slice(0, 1) === '!') {
-				isNotSearch = true;
-				target = target.slice(1);
-			}
-         
-         var targetId = toId(target[i]);
-         if (targetId === '' + parseInt(targetId)) {
-            for (var p in Tools.data.Pokedex) {
-               var pokemon = Tools.getTemplate(p);
-               if (pokemon.num === parseInt(target)) {
-                  target = pokemon.species;
-                  targetId = pokemon.id;
-                  break;
-               }
-            }
-         }
-         
-         var newTargets = Tools.dataSearch(target);
-         if (newTargets && newTargets.length) {
-            for (var i = 0; i < newTargets.length; ++i) {
-               if (newTargets[i].id !== targetId && !Tools.data.Aliases[targetId] && !i) {
-                  buffer = "No Pokemon named '" + target + "' was found. Showing the data of '" + newTargets[0].name + "' instead.\n";
-               }
-            }
-         } else {
-            return this.sendReply("No Pokemon, item, move, ability or nature named '" + target + "' was found. (Check your spelling?)");
-         }
+		  var buffer = '';
+		  
+		  if (!target) return this.parse('/help dexsearch');
+			var targets = target.split(',');
+		  
+		  for (var i in targets) {
+				var isNotSearch = false;
+				var target = targets[i].trim().toLowerCase();
+				if (target.slice(0, 1) === '!') {
+					isNotSearch = true;
+					target = target.slice(1);
+				}
+			 
+			 var targetId = toId(target);
+			 if (targetId === '' + parseInt(targetId)) {
+				for (var p in Tools.data.Pokedex) {
+				   var pokemon = Tools.getTemplate(p);
+				   if (pokemon.num === parseInt(target)) {
+					  target = pokemon.species;
+					  targetId = pokemon.id;
+					  break;
+				   }
+				}
+			 }
+			 
+			 var newTargets = Tools.dataSearch(target);
+			 if (newTargets && newTargets.length) {
+				for (var i = 0; i < newTargets.length; ++i) {
+				   if (newTargets[i].id !== targetId && !Tools.data.Aliases[targetId] && !i) {
+					  buffer = "No Pokemon named '" + target + "' was found. Showing the data of '" + newTargets[0].name + "' instead.\n";
+				   }
+				}
+			 } else {
+				return this.sendReply("No Pokemon, item, move, ability or nature named '" + target[i] + "' was found. (Check your spelling?)");
+			 }
 
-         var details;
-         var pokemon = Tools.getTemplate(newTargets[0].name);
-         details = {
-            "Pokemon": pokemon.species,
-            "PBV": pokemon.pokebattlevalue
-         };
+			 var details;
+			 var pokemon = Tools.getTemplate(newTargets[0].name);
+			 details = {
+				"Pokemon": pokemon.species,
+				"PBV": pokemon.pokebattlevalue
+			 };
 
-         buffer += '|raw|<font size="1">' + Object.keys(details).map(function (detail) {
-            return '<font color=#585858>' + detail + (details[detail] !== '' ? ':</font> ' + details[detail] : '</font>');
-         }).join("&nbsp;|&ThickSpace;") + '</font>';
-      }
+			 buffer += '|raw|<font size="1">' + Object.keys(details).map(function (detail) {
+				return '<font color=#585858>' + detail + (details[detail] !== '' ? ':</font> ' + details[detail] : '</font>');
+			 }).join("&nbsp;|&ThickSpace;") + '</font>\n';
+		  }
       
       this.sendReply(buffer);
 	},
