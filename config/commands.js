@@ -802,7 +802,7 @@ var commands = exports.commands = {
 				target = target.slice(1);
 			}
          
-         var targetId = toId(target);
+         var targetId = toId(target[i]);
          if (targetId === '' + parseInt(targetId)) {
             for (var p in Tools.data.Pokedex) {
                var pokemon = Tools.getTemplate(p);
