@@ -152,7 +152,7 @@ exports.Formats = [
 		'Mewtwo', 'Lugia', 'Ho-Oh', 'Kyogre', 'Groudon', 'Rayquaza', 'Dialga', 'Palkia', 'Giratina', 'Giratina-Origin',
 		'Arceus', 'Reshiram', 'Zekrom', 'Kyurem-White', 'Xerneas', 'Yveltal'
 		]
-	}
+	},
 	
 	//XY MONOTYPE
 	////////////////////////////
