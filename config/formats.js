@@ -39,9 +39,14 @@ exports.Formats = [
 
 		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', 'Team Preview', 'PBV 250 Clause'],
 	},
+	
+	//ORAS SINGLES
+	////////////////////////////////
+	
+	
 	{
 		name: "PBV 1500 ORAS",
-		section: "XY Singles",
+		section: "ORAS Singles",
 
 		mod: 'oras',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Team Preview', 'PBV 1500 Clause'],
@@ -52,7 +57,7 @@ exports.Formats = [
 	},
 	{
 		name: "PBV 1000 ORAS",
-		section: "XY Singles",
+		section: "ORAS Singles",
 
 		mod: 'oras',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Team Preview', 'PBV 1000 Clause'],
@@ -63,7 +68,7 @@ exports.Formats = [
 	},
 	{
 		name: "PBV 750 ORAS",
-		section: "XY Singles",
+		section: "ORAS Singles",
 
 		mod: 'oras',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Team Preview', 'PBV 750 Clause'],
@@ -74,7 +79,7 @@ exports.Formats = [
 	},
 	{
 		name: "PBV 500 ORAS",
-		section: "XY Singles",
+		section: "ORAS Singles",
 
 		mod: 'oras',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Team Preview', 'PBV 500 Clause'],
@@ -85,7 +90,7 @@ exports.Formats = [
 	},
 	{
 		name: "PBV 250 ORAS",
-		section: "XY Singles",
+		section: "ORAS Singles",
 
 		mod: 'oras',
 		ruleset: ['Pokemon', 'Sleep Clause Mod', 'Species Clause', 'OHKO Clause', 'Moody Clause', 'Evasion Moves Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Team Preview', 'PBV 250 Clause'],
@@ -147,5 +152,28 @@ exports.Formats = [
 		'Mewtwo', 'Lugia', 'Ho-Oh', 'Kyogre', 'Groudon', 'Rayquaza', 'Dialga', 'Palkia', 'Giratina', 'Giratina-Origin',
 		'Arceus', 'Reshiram', 'Zekrom', 'Kyurem-White', 'Xerneas', 'Yveltal'
 		]
+	}
+	
+	//XY MONOTYPE
+	////////////////////////////
+	{
+		name: "PBV 1500 Monotype",
+		section: "XY Monotype",
+		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', '1500 PBV Clause', 'Same Type Clause']
+	},
+	{
+		name: "PBV 1000 Monotype",
+		section: "XY Monotype",
+		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', '1000 PBV Clause', 'Same Type Clause']
+	},
+	{
+		name: "PBV 750 Monotype",
+		section: "XY Monotype",
+		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', '1500 PBV Clause', 'Same Type Clause']
+	},
+	{
+		name: "PBV 500 Monotype",
+		section: "XY Monotype",
+		ruleset: ['Pokemon', 'Standard Ubers', 'Swagger Clause', '1500 PBV Clause', 'Same Type Clause']
 	}
 ];
