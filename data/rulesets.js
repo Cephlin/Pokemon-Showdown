@@ -701,7 +701,7 @@ exports.BattleFormats = {
 					// Add the PBV * Eviolite Multiplier to the total PBV and evioliteTotal
 					// Horible formula to account for js maths weirdness
 					// See: http://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-in-javascript
-					pbvWithEviolite = Math.round(pokemonTemplate.pokebattlevalue * evioliteMultiplier);
+					pbvWithEviolite = (Math.round(pokemonTemplate.pokebattlevalue * evioliteMultiplier / 5) * 5);
 					totalPBV += pbvWithEviolite;
 					evioliteTotal += pbvWithEviolite - pokemonTemplate.pokebattlevalue;
 						
@@ -785,7 +785,7 @@ exports.BattleFormats = {
 					// Add the PBV * Eviolite Multiplier to the total PBV and evioliteTotal
 					// Horible formula to account for js maths weirdness
 					// See: http://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-in-javascript
-					pbvWithEviolite = Math.round(pokemonTemplate.pokebattlevalue * evioliteMultiplier);
+					pbvWithEviolite = (Math.round(pokemonTemplate.pokebattlevalue * evioliteMultiplier / 5) * 5);
 					totalPBV += pbvWithEviolite;
 					evioliteTotal += pbvWithEviolite - pokemonTemplate.pokebattlevalue;
 						
@@ -868,7 +868,7 @@ exports.BattleFormats = {
 					// Add the PBV * Eviolite Multiplier to the total PBV and evioliteTotal
 					// Horible formula to account for js maths weirdness
 					// See: http://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-in-javascript
-					pbvWithEviolite = Math.round(pokemonTemplate.pokebattlevalue * evioliteMultiplier);
+					pbvWithEviolite = (Math.round(pokemonTemplate.pokebattlevalue * evioliteMultiplier / 5) * 5);
 					totalPBV += pbvWithEviolite;
 					evioliteTotal += pbvWithEviolite - pokemonTemplate.pokebattlevalue;
 					
@@ -942,7 +942,7 @@ exports.BattleFormats = {
 					// Add the PBV * Eviolite Multiplier to the total PBV and evioliteTotal
 					// Horible formula to account for js maths weirdness
 					// See: http://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-in-javascript
-					pbvWithEviolite = Math.round(pokemonTemplate.pokebattlevalue * evioliteMultiplier);
+					pbvWithEviolite = (Math.round(pokemonTemplate.pokebattlevalue * evioliteMultiplier / 5) * 5);
 					totalPBV += pbvWithEviolite;
 					evioliteTotal += pbvWithEviolite - pokemonTemplate.pokebattlevalue;
 					
@@ -1016,7 +1016,7 @@ exports.BattleFormats = {
 					// Add the PBV * Eviolite Multiplier to the total PBV and evioliteTotal
 					// Horible formula to account for js maths weirdness
 					// See: http://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-in-javascript
-					pbvWithEviolite = Math.round(pokemonTemplate.pokebattlevalue * evioliteMultiplier);
+					pbvWithEviolite = (Math.round(pokemonTemplate.pokebattlevalue * evioliteMultiplier / 5) * 5);
 					totalPBV += pbvWithEviolite;
 					evioliteTotal += pbvWithEviolite - pokemonTemplate.pokebattlevalue;
 					
