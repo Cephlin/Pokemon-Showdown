@@ -1267,93 +1267,53 @@ var commands = exports.commands = {
 		this.sendReplyBox(buffer);
 	},
 
-	analysis: 'smogdex',
-	strategy: 'smogdex',
-	smogdex: function (target, room, user) {
+	analysis: 'pbdex',
+	strategy: 'pbdex',
+	pbdex: function (target, room, user) {
 		if (!this.canBroadcast()) return;
 
 		var targets = target.split(',');
-		if (toId(targets[0]) === 'previews') return this.sendReplyBox("<a href=\"https://www.smogon.com/forums/threads/sixth-generation-pokemon-analyses-index.3494918/\">Generation 6 Analyses Index</a>, brought to you by <a href=\"https://www.smogon.com\">Smogon University</a>");
+		if (toId(targets[0]) === 'previews') return this.sendReplyBox("<a href=\"https://www.pokebattle.com/pokedex/\">Generation 6 Analyses Index</a>, brought to you by <a href=\"https://www.pokebattle.com\">PokeBattle.</a>");
 		var pokemon = Tools.getTemplate(targets[0]);
 		var item = Tools.getItem(targets[0]);
 		var move = Tools.getMove(targets[0]);
 		var ability = Tools.getAbility(targets[0]);
-		var atLeastOne = false;
-		var generation = (targets[1] || 'xy').trim().toLowerCase();
 		var genNumber = 6;
-		// var doublesFormats = {'vgc2012':1, 'vgc2013':1, 'vgc2014':1, 'doubles':1};
-		var doublesFormats = {};
-		var doublesFormat = (!targets[2] && generation in doublesFormats)? generation : (targets[2] || '').trim().toLowerCase();
-		var doublesText = '';
-		if (generation === 'xy' || generation === 'xy' || generation === '6' || generation === 'six') {
-			generation = 'xy';
-		} else if (generation === 'bw' || generation === 'bw2' || generation === '5' || generation === 'five') {
-			generation = 'bw';
-			genNumber = 5;
-		} else if (generation === 'dp' || generation === 'dpp' || generation === '4' || generation === 'four') {
-			generation = 'dp';
-			genNumber = 4;
-		} else if (generation === 'adv' || generation === 'rse' || generation === 'rs' || generation === '3' || generation === 'three') {
-			generation = 'rs';
-			genNumber = 3;
-		} else if (generation === 'gsc' || generation === 'gs' || generation === '2' || generation === 'two') {
-			generation = 'gs';
-			genNumber = 2;
-		} else if (generation === 'rby' || generation === 'rb' || generation === '1' || generation === 'one') {
-			generation = 'rb';
-			genNumber = 1;
-		} else {
-			generation = 'xy';
-		}
-		if (doublesFormat !== '') {
-			// Smogon only has doubles formats analysis from gen 5 onwards.
-			if (!(generation in {'bw':1, 'xy':1}) || !(doublesFormat in doublesFormats)) {
-				doublesFormat = '';
-			} else {
-				doublesText = {'vgc2012':"VGC 2012", 'vgc2013':"VGC 2013", 'vgc2014':"VGC 2014", 'doubles':"Doubles"}[doublesFormat];
-				doublesFormat = '/' + doublesFormat;
-			}
-		}
+		var atLeastOne = false;
 
 		// Pokemon
 		if (pokemon.exists) {
 			atLeastOne = true;
-			if (genNumber < pokemon.gen) {
-				return this.sendReplyBox("" + pokemon.name + " did not exist in " + generation.toUpperCase() + "!");
-			}
-			// if (pokemon.tier === 'CAP') generation = 'cap';
-			if (pokemon.tier === 'CAP') return this.sendReply("CAP is not currently supported by Smogon Strategic Pokedex.");
-
 			var illegalStartNums = {'351':1, '421':1, '487':1, '493':1, '555':1, '647':1, '648':1, '649':1, '681':1};
 			if (pokemon.isMega || pokemon.num in illegalStartNums) pokemon = Tools.getTemplate(pokemon.baseSpecies);
 			var poke = pokemon.name.toLowerCase().replace(/\ /g, '_').replace(/[^a-z0-9\-\_]+/g, '');
 
-			this.sendReplyBox("<a href=\"https://www.smogon.com/dex/" + generation + "/pokemon/" + poke + doublesFormat + "\">" + generation.toUpperCase() + " " + doublesText + " " + pokemon.name + " analysis</a>, brought to you by <a href=\"https://www.smogon.com\">Smogon University</a>");
+			this.sendReplyBox("<a href=\"https://www.pokebattle.com/dex/pokemon/" + poke + "\">" + generation.toUpperCase() + " " + pokemon.name + " analysis</a>, brought to you by <a href=\"https://www.pokebattle.com\">PokeBattle.</a>");
 		}
 
 		// Item
 		if (item.exists && genNumber > 1 && item.gen <= genNumber) {
 			atLeastOne = true;
-			var itemName = item.name.toLowerCase().replace(' ', '_');
-			this.sendReplyBox("<a href=\"https://www.smogon.com/dex/" + generation + "/items/" + itemName + "\">" + generation.toUpperCase() + " " + item.name + " item analysis</a>, brought to you by <a href=\"https://www.smogon.com\">Smogon University</a>");
+			var itemName = item.name.toLowerCase().replace(' ', '-');
+			this.sendReplyBox("<a href=\"https://www.pokebattle.com/dex/items/" + itemName + "\">" + item.name + " item analysis</a>, brought to you by <a href=\"https://www.pokebattle.com\">PokeBattle.</a>");
 		}
 
 		// Ability
 		if (ability.exists && genNumber > 2 && ability.gen <= genNumber) {
 			atLeastOne = true;
-			var abilityName = ability.name.toLowerCase().replace(' ', '_');
-			this.sendReplyBox("<a href=\"https://www.smogon.com/dex/" + generation + "/abilities/" + abilityName + "\">" + generation.toUpperCase() + " " + ability.name + " ability analysis</a>, brought to you by <a href=\"https://www.smogon.com\">Smogon University</a>");
+			var abilityName = ability.name.toLowerCase().replace(' ', '-');
+			this.sendReplyBox("<a href=\"https://www.pokebattle.com/dex/abilities/" + abilityName + "\">" + ability.name + " ability analysis</a>, brought to you by <a href=\"https://www.pokebattle.com\">PokeBattle.</a>");
 		}
 
 		// Move
 		if (move.exists && move.gen <= genNumber) {
 			atLeastOne = true;
-			var moveName = move.name.toLowerCase().replace(' ', '_');
-			this.sendReplyBox("<a href=\"https://www.smogon.com/dex/" + generation + "/moves/" + moveName + "\">" + generation.toUpperCase() + " " + move.name + " move analysis</a>, brought to you by <a href=\"https://www.smogon.com\">Smogon University</a>");
+			var moveName = move.name.toLowerCase().replace(' ', '-');
+			this.sendReplyBox("<a href=\"https://www.smogon.com/dex/moves/" + moveName + "\">" + move.name + " move analysis</a>, brought to you by <a href=\"https://www.pokebattle.com\">PokeBattle.</a>");
 		}
 
 		if (!atLeastOne) {
-			return this.sendReplyBox("Pokemon, item, move, or ability not found for generation " + generation.toUpperCase() + ".");
+			return this.sendReplyBox("Pokemon, item, move, or ability not found in the database.");
 		}
 	},
 
