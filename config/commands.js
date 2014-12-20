@@ -606,7 +606,7 @@ var commands = exports.commands = {
 	pokebattlevalue: 'pbv',
 	pbv: function (target, room, user, connection, cmd) {
 		if (!this.canBroadcast()) return;
-		if (!target) return this.parse('/help dexsearch');
+		if (!target) return this.parse('/help pbv');
 		
 		var buffer = '';
 		var targets = target.split(',');
@@ -1458,7 +1458,7 @@ var commands = exports.commands = {
 			this.sendReply("/data [pokemon/item/move/ability] - Get details on this pokemon/item/move/ability/nature.");
 			this.sendReply("!data [pokemon/item/move/ability] - Show everyone these details. Requires: + % @ & ~");
 		}
-		if (target === 'data') {
+		if (target === 'pbv' || target === 'pokebattlevalue') {
 			matched = true;
 			this.sendReply("/pbv [pokemon/] - Get PokeBattle Value for the pokémon.");
 			this.sendReply("!pbv [pokemon] - Show everyone these details. Requires: + % @ & ~");
