@@ -606,7 +606,7 @@ var commands = exports.commands = {
 	pokebattlevalue: 'pbv',
 	pbv: function (target, room, user, connection, cmd) {
 		if (!this.canBroadcast()) return;
-		if (!target) return this.parse('/help dexsearch');
+		if (!target) return this.parse('/help pbv');
 		
 		var buffer = '';
 		var targets = target.split(',');
@@ -1427,6 +1427,10 @@ var commands = exports.commands = {
 	help: function (target, room, user) {
 		target = target.toLowerCase();
 		var matched = false;
+		if (target === 'pbv' || 'pokebattlevalue') {
+			matched = true;
+			this.sendReply("/pbv OR /pokebattlevalue - Search for the PBV of a Pokemon, search for Pokemon of a certain PBV or lower, or find the sum of Pokemon PBV. Usage: /pbv [pokemon], [pokemon], ...")
+		}
 		if (target === 'msg' || target === 'pm' || target === 'whisper' || target === 'w') {
 			matched = true;
 			this.sendReply("/msg OR /whisper OR /w [username], [message] - Send a private message.");
